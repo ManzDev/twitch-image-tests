@@ -1,18 +1,33 @@
+# PNG
 pngquant
 optipng
-mozjpeg
-pngcrush
-apngopt
-pngnq
-squoosh
-svgo
-advpng
-pngout
-oxipng
-zopflipng
+pngcrush -ow -q -l 9
+pngnq -s 1 -e pngnq.png
+advpng -z -q -1 -3 -4
+pngout input -s0 -y -q
+oxipng --strip all -q -o max {INPUT} --out {OUTPUT}
+zopflipng -m 
+
+# GIF/APNG
 gifsicle
-jpeg-recompress
-guetzli
-jpegtran
 gif2apng
-avif
+apngopt
+
+# JPEG
+mozjpeg
+jpeg-recompress
+jpegtran
+guetzli
+
+# Vector
+svgo
+
+# New generation
+opj_compress -i {INPUT} -o {OUTPUT}
+JxrEncApp
+
+# Next generation
+cjxl {INPUT} {OUTPUT} --progressive -q 75
+cwebp -q 75 -quiet -jpeg_like {INPUT} -o {OUTPUT}
+avif --input {INPUT} --output outputs --quality 50 --speed 5 --lossless
+cwp2 -q 75 -quiet {INPUT} -o {OUTPUT}
